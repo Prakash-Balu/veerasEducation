@@ -69,7 +69,7 @@ export default function App() {
             color: 'black',
             fontSize: 11
           }}
-          
+          startIcon={<ArrowDropDownIcon />}
           >
             {countryCode}
           </Text>
@@ -82,7 +82,7 @@ export default function App() {
             setCountryCode(item.dial_code);
             setShow(false);
           }}
-          startIcon={<ArrowDropDownIcon/>}
+          
           ListHeaderComponent={ListHeaderComponent}
           popularCountries={['en', 'ua', 'pl']}
         />
