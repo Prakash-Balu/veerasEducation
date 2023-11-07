@@ -1,8 +1,13 @@
 // import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Linking } from 'react-native';
-import Button from '@material-ui/core/Button';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import Button from '@mui/material/Button';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ArrowCircleRightRoundedIcon from '@mui/icons-material/ArrowCircleRightRounded';
+import MenuItem from '@mui/material/MenuItem';
+import TextField from '@mui/material/TextField';
+import Select from '@mui/material/Select';
+
 import { CountryPicker, CountryButton } from "react-native-country-codes-picker";
 // import {CountryList} from "react-native-country-codes-picker";
 const image = require('./assets/logoKApp.png');
@@ -28,6 +33,11 @@ function ListHeaderComponent({ countries, lang, onPress }) {
 export default function App() {
   const [show, setShow] = useState(false);
   const [countryCode, setCountryCode] = useState('+91');
+
+
+  const handleChange = (event) => {
+    setCountryCode(event.target.value);
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.loginHeader}>welcome to kadalaiapp</Text>
@@ -47,14 +57,20 @@ export default function App() {
           style={{
             width: '15%',
             height: 40,
-            backgroundColor: 'grey',
+            // backgroundColor: 'grey',
             padding: 10,
+            borderBottomWidth: 1,
+            borderBottomStyle : 'solid',
+            borderBottomColor : '#0000006b',
           }}
+          
         >
           <Text style={{
-            color: 'white',
+            color: 'black',
             fontSize: 11
-          }}>
+          }}
+          
+          >
             {countryCode}
           </Text>
         </TouchableOpacity>
@@ -66,23 +82,37 @@ export default function App() {
             setCountryCode(item.dial_code);
             setShow(false);
           }}
+          startIcon={<ArrowDropDownIcon/>}
           ListHeaderComponent={ListHeaderComponent}
           popularCountries={['en', 'ua', 'pl']}
         />
-        <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 20, position: 'absolute', left: 75 }}
-          onChangeText={text => setValue(text)}
-          keyboardType="numeric"
-          placeholder="Enter your text here" />
-        <Button
-        style={styles.SubmitBtn}
-          key="submitBtn"
-          variant="contained"
-          color="default"
-          startIcon={<ArrowForwardIcon />}
-          onClick={() => this.onInputChange(submitBtn)}
+
+        <TextField
+          id="standard-basic"
+          style={styles.TextInput2}
+          label="Enter Number"
+          variant="standard" />
+
+{/* <Select
+          labelId="demo-simple-select-standard-label"
+          id="demo-simple-select-standard"
+          value={countryCode}
+          onChange={handleChange}
+          label="Age"
         >
-          
-        </Button>
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select> */}
+
+        <ArrowCircleRightRoundedIcon
+          style={styles.SubmitBtn}
+          color="primary"
+          fontSize='large'>
+        </ArrowCircleRightRoundedIcon>
       </View>
 
 
@@ -144,9 +174,18 @@ const styles = StyleSheet.create({
     marginTop: 72,
     textAlign: 'center'
   },
+  TextInput2: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 20,
+    position: 'absolute',
+    left: 75,
+    marginTop: -10,
+  },
   SubmitBtn: {
     position: 'absolute',
-    right: 0
+    right: 0,
   },
   Text2: {
     marginTop: 81.44,
