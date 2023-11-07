@@ -1,6 +1,8 @@
 // import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Linking } from 'react-native';
+import Button from '@material-ui/core/Button';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { CountryPicker, CountryButton } from "react-native-country-codes-picker";
 // import {CountryList} from "react-native-country-codes-picker";
 const image = require('./assets/logoKApp.png');
@@ -71,6 +73,16 @@ export default function App() {
           onChangeText={text => setValue(text)}
           keyboardType="numeric"
           placeholder="Enter your text here" />
+        <Button
+        style={styles.SubmitBtn}
+          key="submitBtn"
+          variant="contained"
+          color="default"
+          startIcon={<ArrowForwardIcon />}
+          onClick={() => this.onInputChange(submitBtn)}
+        >
+          
+        </Button>
       </View>
 
 
@@ -131,6 +143,10 @@ const styles = StyleSheet.create({
   TextInput1: {
     marginTop: 72,
     textAlign: 'center'
+  },
+  SubmitBtn: {
+    position: 'absolute',
+    right: 0
   },
   Text2: {
     marginTop: 81.44,
